@@ -22,7 +22,6 @@ html, body{
 
 .contador-box p{
     margin:0;
-    color:white;
 }
 
 .numero-wrapper{
@@ -47,26 +46,10 @@ html, body{
     height:95px;
     opacity:0;
     transform:scale(.3) rotate(-20deg);
-    transition:none;
 }
 
 .blood.show{
     animation:bloodSplash .55s ease-out;
-}
-
-@keyframes bloodSplash{
-    0%{
-        opacity:0;
-        transform:scale(.2) rotate(-25deg);
-    }
-    25%{
-        opacity:1;
-        transform:scale(1.25) rotate(5deg);
-    }
-    100%{
-        opacity:0;
-        transform:scale(1.8) rotate(10deg);
-    }
 }
 </style>
 </head>
@@ -103,7 +86,12 @@ html, body{
 </div>
 <script>
 let ultimoValor = null;
-
+document.addEventListener("click", () => {
+    sonido.play().then(() => {
+        sonido.pause();
+        sonido.currentTime = 0;
+    }).catch(() => {});
+}, { once: true });
 const blood = document.getElementById("blood");
 const sonido = new Audio("/sonido.mp3");
 
@@ -117,15 +105,16 @@ async function actualizar() {
 
     if (ultimoValor !== null && data.count !== ultimoValor) {
 
-        // Reinicia y reproduce el sonido
-        sonido.pause();
+        // Reinicia la animación (funciona en OBS)
+        blood.style.animation = "none";
+        blood.offsetHeight; // fuerza reflow
+        blood.style.animation = "";
+        blood.classList.add("show");
+
+        setTimeout(() => blood.classList.remove("show"), 600);
+
         sonido.currentTime = 0;
         sonido.play().catch(() => {});
-
-        // Reinicia la animación de la sangre
-        blood.classList.remove("show");
-        void blood.offsetWidth;
-        blood.classList.add("show");
     }
 
     ultimoValor = data.count;
