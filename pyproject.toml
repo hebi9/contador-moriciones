@@ -1,2 +1,9 @@
+[project]
+name = "contador-moriciones"
+version = "0.1.0"
+dependencies = [
+    "Flask>=3.0.0"
+]
+
 [tool.vercel]
 entrypoint = "api.count:app"
