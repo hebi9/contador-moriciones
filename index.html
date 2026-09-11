@@ -72,15 +72,35 @@ html, body{
 </head>
 <body>
 
-<div class="container">
-    <div class="d-flex align-items-center justify-content-center"
-         style="gap:20px;border-bottom:solid red 3px;">
-        <p style="margin:0;">Total de muertes:</p>
-        <h1 id="contador" style="margin:0;color:red; border-radius:50%">179</h1>
-        <img src="https://w7.pngwing.com/pngs/132/187/png-transparent-cheems-dog.png" style="width:50px">
+<div class="container" style="width:300px;">
+    <div class="contador-box">
+        <p>Total de muertes:</p>
+
+        <div class="numero-wrapper">
+
+            <svg id="blood" viewBox="0 0 200 200" class="blood">
+                <path d="M98 20
+                         C120 5 150 25 140 50
+                         C170 45 185 75 165 95
+                         C190 110 170 145 140 140
+                         C145 170 115 190 92 168
+                         C70 195 35 170 45 140
+                         C10 145 -2 105 28 90
+                         C8 65 30 35 60 45
+                         C55 18 82 5 98 20Z"
+                      fill="#8b0000"/>
+                <circle cx="35" cy="120" r="8" fill="#8b0000"/>
+                <circle cx="155" cy="55" r="6" fill="#8b0000"/>
+                <circle cx="150" cy="150" r="10" fill="#8b0000"/>
+                <circle cx="55" cy="45" r="5" fill="#8b0000"/>
+            </svg>
+
+            <h1 id="contador">179</h1>
+        </div>
+
+        <img src="https://ih1.redbubble.net/image.1373072963.3205/flat,750x1000,075,f.jpg" style="width:50px">
     </div>
 </div>
-
 <script>
 let ultimoValor = null;
 
@@ -114,6 +134,5 @@ async function actualizar() {
 actualizar();
 setInterval(actualizar, 1000);
 </script>
-
 </body>
 </html>
