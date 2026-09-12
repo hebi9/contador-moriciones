@@ -3,7 +3,7 @@ from pathlib import Path
 
 app = Flask(__name__)
 
-contador = {"count": 179}
+contador = {"count": 0}
 
 ROOT = Path(__file__).resolve().parent.parent
 
